@@ -7,13 +7,12 @@ import Filter from './Filter/Filter';
 
 export function App () {
 
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(()=> JSON.parse(localStorage.getItem('contacts')) ?? [ ] );
   const [filterValue, setFilterValue] = useState('');
 
   useEffect(() => {
-    const storageContacts = localStorage.getItem('contacts');
-    storageContacts && setContacts(JSON.parse(storageContacts));
-  }, [setContacts])
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts])
 
   useEffect(() => {
     if (!contacts.length) return;
