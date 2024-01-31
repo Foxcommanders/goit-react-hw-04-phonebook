@@ -13,12 +13,7 @@ export function App () {
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts])
-
-  useEffect(() => {
-    if (!contacts.length) return;
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts, filterValue])
-
+  
   const onDeleteContact = id => {
     setContacts(PrevState => PrevState.filter(contact => contact.id !== id));
   };
